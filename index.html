@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>demo</title>
+</head>
+<body>
+<div id="target" style="width: 100%;height: 500px;margin: 0 auto;position: relative"></div>
+</body>
+<script>
+
+    let viewContainer = function (module,arg) {
+        this.module = module
+        this.arg = arg
+    }
+
+    viewContainer.of = function (module,arg) {
+        return new viewContainer(module,arg)
+    }
+
+    viewContainer.prototype.map = function (target) {
+        document.getElementById(target).innerHTML =  this.module(this.arg)
+    }
+
+
+
+
+    let param1 = {
+        style:'position:absolute;left:30px;top:100px;width: 20px;height: 30px;background-color: red;',
+        text:'hah'
+    }
+    let param2 = {
+        style:'position:absolute;left:60px;top:90px;width: 20px;height: 30px;background-color: rebeccapurple;',
+        text:'hah'
+    }
+    let param3 = {
+        style:'position:absolute;left:90px;top:80px;width: 20px;height: 30px;background-color: green;',
+        text:'hah'
+    }
+    let param4 = {
+        style:'position:absolute;left:120px;top:70px;width: 20px;height: 30px;background-color: burlywood;',
+        text:'hah'
+    }
+    let param5 = {
+        style:'position:absolute;left:150px;top:60px;width: 20px;height: 30px;background-color: black;',
+        text:'hah'
+    }
+    let param6 = {
+        style:'position:absolute;left:180px;top:70px;width: 20px;height: 30px;background-color: saddlebrown;',
+        text:'hah'
+    }
+    let param7 = {
+        style:'position:absolute;left:210px;top:80px;width: 20px;height: 30px;background-color: grey;',
+        text:'hah'
+    }
+    let param8 = {
+        style:'position:absolute;left:240px;top:90px;width: 20px;height: 30px;background-color: yellow;',
+        text:'hah'
+    }
+    let param9 = {
+        style:'position:absolute;left:270px;top:100px;width: 20px;height: 30px;background-color: orchid;',
+        text:'hah'
+    }
+
+    let view1 = function (param) {
+        return '<div style="'+param.style+'">'+param.text+'</div>'
+    }
+    let view2 = function (param) {
+        return '<div style="width: 200px;height: 300px;background-color: rebeccapurple;">'+param+'</div>'
+    }
+    let view3 = function (param) {
+        return '<div style="width: 200px;height: 300px;background-color: green;">'+param+'</div>'
+    }
+    let view4 = function (param) {
+        return '<div style="width: 200px;height: 300px;background-color: burlywood;">'+param+'</div>'
+    }
+    let view5 = function (param) {
+        return '<div style="width: 200px;height: 300px;background-color: black;">'+param+'</div>'
+    }
+    let view6 = function (param) {
+        return '<div style="width: 200px;height: 300px;background-color: saddlebrown;">'+param+'</div>'
+    }
+    let view7 = function (param) {
+        return '<div style="width: 200px;height: 300px;background-color: grey;">'+param+'</div>'
+    }
+    let view8 = function (param) {
+        return '<div style="width: 200px;height: 300px;background-color: yellow;">'+param+'</div>'
+    }
+    let view9 = function (param) {
+        return '<div style="width: 200px;height: 300px;background-color: orchid;">'+param+'</div>'
+    }
+
+
+
+//sample one :
+
+    var i = 0
+    setInterval(function () {
+        var paramArray = [param1,param2,param3,param4,param5,param6,param7,param8,param9]
+        viewContainer.of(view1,paramArray[i]).map('target')
+        if(i<8){
+            i += 1
+        }else {
+            i = 0
+        }
+
+    },200)
+
+//sample two :
+
+    var i = 0
+    setInterval(function () {
+        var viewArray = [view1,view2,view3,view4,view5,view6,view7,view8,view9]
+        viewContainer.of(viewArray[i],param1).map('target')
+        if(i<8){
+            i += 1
+        }else {
+            i = 0
+        }
+
+    },200)
+
+//    by yourselves , combine the template with parameters ,
+
+//    step1:
+
+//    viewContainer.of(viewTemplate,parameters)
+
+//    step2:
+
+//    .map(target)  target is  the id of dom will be injected  by template
+
+//    if you want , you can add event function in paramTree ,then inject into the event attribute of element
+
+</script>
+</html>
