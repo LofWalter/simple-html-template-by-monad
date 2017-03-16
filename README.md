@@ -1,5 +1,4 @@
 # simple-html-template-by-monad
-# simple-html-template-by-monad
 
 
 this project is just a funny thought ,including monad thought , developer can compile the html template without dependencies easily.
